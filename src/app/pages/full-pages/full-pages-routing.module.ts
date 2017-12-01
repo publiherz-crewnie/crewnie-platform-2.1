@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FullLayoutPageComponent } from 'app/pages/full-layout-page/full-layout-page.component';
+import { FullLayoutPageComponent } from 'app/pages/full-pages/full-layout-page.component';
 
 const routes: Routes = [
   {

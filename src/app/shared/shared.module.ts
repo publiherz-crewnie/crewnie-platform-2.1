@@ -10,7 +10,6 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
 
 
-
 @NgModule({
     exports: [
         CommonModule,

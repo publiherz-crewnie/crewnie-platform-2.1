@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const SYSTEM_ROUTES: Routes = [
     {
-        path: 'system-layout',
-        loadChildren: './pages/system-layout-page/system-pages.module#SystemPagesModule'
+        path: '',
+        loadChildren: './pages/system-pages/system-pages.module#SystemPagesModule'
       }
 ];
