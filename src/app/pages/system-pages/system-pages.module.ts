@@ -7,8 +7,9 @@ import { SystemPagesRoutingModule } from "./system-pages-routing.module";
 import { RegisterPageComponent } from './register/register-page.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
+import { LockScreenPageComponent } from './lock-screen/lock-screen-page.component';
+import { MaintenancePageComponent } from './maintenance/maintenance-page.component';
 import { ErrorPageComponent } from './error/error-page.component';
-// import { MaintenancePageComponent } from './maintenance/maintenance-page.component';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { ErrorPageComponent } from './error/error-page.component';
         RegisterPageComponent,
         LoginPageComponent,
         ForgotPasswordPageComponent,
+        LockScreenPageComponent,
+        MaintenancePageComponent,
         ErrorPageComponent
     ]
 })

@@ -25,7 +25,7 @@ export class LoginPageComponent {
         const password: string = this.loginForm.value.inputPass;
         const remember: boolean = this.loginForm.value.ckeckRemember;
   
-        this.acAuth.loginUserWithEmailAndPassword(email, password, remember, 'coming-soon');
+        this.acAuth.loginUserWithEmailAndPassword(email, password, remember, 'me');
     }
 
 
