@@ -6,6 +6,8 @@ import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+
 @Component({
     selector: 'app-mt-wizard-address',
     templateUrl: './address.component.html',
@@ -14,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class AddressComponent implements OnInit {
     title = 'Where do you unwrap?';
-    address: Address;
+    address = new Address;
     form: any;
 
     constructor(private router: Router,
@@ -24,7 +26,10 @@ export class AddressComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.address = this.formDataService.getAddress();
+         // I subscribe to the changes in real time of the Personal global class
+        this.formDataService.getAddress().subscribe( address => {
+            this.address = address;
+        });
     }
     
     // Save button event Starts
@@ -34,6 +39,7 @@ export class AddressComponent implements OnInit {
         }
 
         this.formDataService.setAddress(this.address);
+        
         const firstState = this.workflowService.getFirstInvalidStep(STEPS.work);
         this.router.navigate(['/register-wizard/work'], { relativeTo: this.route.parent, skipLocationChange: true });
     }

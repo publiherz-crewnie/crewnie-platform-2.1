@@ -14,18 +14,32 @@ export class FormData {
 
 // Personal tab data class starts
 export class Personal {
-    firstName = '';
-    lastName = '';
-    genre = '';
-    birthdate = '';
+    firstName: string;
+    lastName: string;
+    genre: string;
+    birthdate: string;
+
+    constructor(){
+        this.firstName = '';
+        this.lastName = '';
+        this.genre = '';
+        this.birthdate = '';
+    }
 }
 // Personal tab data class ends
 
 // Address tab data class starts
 export class Address {
-    street = '';
-    city = '';
-    state = '';
-    zip = '';
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+
+    constructor(){
+        this.street = '';
+        this.city = '';
+        this.state = '';
+        this.zip = '';
+    }
 }
 // Address tab data class Ends

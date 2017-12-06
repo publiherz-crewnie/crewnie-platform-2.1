@@ -7,7 +7,6 @@ import { STEPS } from '../workflow/workflow.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 
 @Component({
     selector: 'app-mt-wizard-personal',
@@ -18,7 +17,7 @@ import 'rxjs/Rx';
 export class PersonalComponent implements OnInit {
 
   title = 'Please tell us about yourself.';
-  personal: Personal;
+  personal = new Personal;
   form: any;
 
   public crewnie: Observable<Personal>;
@@ -30,11 +29,12 @@ export class PersonalComponent implements OnInit {
   ) {    }
 
   ngOnInit() {
-    this.personal = this.formDataService.getPersonal();
 
-    this.formDataService.getMultilevelPersonal().subscribe( personal => {
+    // I subscribe to the changes in real time of the Personal global class
+    this.formDataService.getPersonal().subscribe( personal => {
        this.personal = personal;
     });
+
   }
 
   // Save button event Starts
