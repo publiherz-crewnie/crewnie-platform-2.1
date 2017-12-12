@@ -40,7 +40,7 @@ export class AccountHealthGuard implements CanLoad {
             };
         }).first();
 
-      }
+    }
 
     isEmailValidated( emailVerified ) {
         let navigationExtras: NavigationExtras;

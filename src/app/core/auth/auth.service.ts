@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 // Toast notifications
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -11,11 +15,16 @@ export class AuthService {
   token: string;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     public toastr: ToastsManager,
-    private router: Router,
-  ) {}
+    private router: Router
+  ) { }
 
+  getUserObservable(): Observable<firebase.User> {
+    return this.afAuth.authState.map(user => {
+      return user;
+    }).first();
+  }
 
   loginUserWithEmailAndPassword(email: string, password: string, persistence: any, url: string) {
     if (persistence) {
@@ -39,7 +48,13 @@ export class AuthService {
       return this.afAuth.auth.signOut()
       .then(() => {
         this.token = null;
-        this.router.navigate(['/login']);
+        const navigationExtras = {
+          queryParams: {
+              'url': this.router.url,
+              queryParamsHandling: 'preserve'
+          }
+        };
+        this.router.navigate(['/login'], navigationExtras);
       });
   }
 
@@ -50,5 +65,11 @@ export class AuthService {
   isAuthenticated() {
     // here you can check if user is authenticated or not through his token 
     return true;
+  }
+
+  isAuthenticatedObservable(): Observable<boolean>{
+    return this.getUserObservable().flatMap( user => {
+      return Observable.of(!!user);
+    });
   }
 }

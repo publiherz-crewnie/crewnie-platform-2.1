@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 
 import { FullPagesRoutingModule } from "./full-pages-routing.module";
 
-import { FullLayoutPageComponent } from './full-layout-page.component';
+import { CrewnieProfilePageComponent } from './crewnies/crewnie-profile-page.component';
 
 @NgModule({
     imports: [
@@ -11,7 +11,7 @@ import { FullLayoutPageComponent } from './full-layout-page.component';
         FullPagesRoutingModule   
     ],
     declarations: [       
-        FullLayoutPageComponent
+        CrewnieProfilePageComponent
     ]
 })
 export class FullPagesModule { }

@@ -52,12 +52,15 @@ export class FormDataService {
     getPersonal(): Observable<Personal> {
         return this.getCrewnieObservable().flatMap(
             formdata => {
-                const personal = {
-                    firstName: formdata.firstName,
-                    lastName: formdata.lastName,
-                    genre: formdata.genre,
-                    birthdate: formdata.birthdate
-                }  
+                let personal = new Personal;
+                if(!!formdata){
+                    personal = {
+                        firstName: formdata.firstName,
+                        lastName: formdata.lastName,
+                        genre: formdata.genre,
+                        birthdate: formdata.birthdate
+                    }
+                }
                 return Observable.of(personal);
             }
         );
@@ -138,7 +141,8 @@ export class FormDataService {
     }
 
     saveInDatabase(data: any){
-        this.docRef.set( data, {merge: true} ).then( () => {
+        
+        this.docRef.set( Object.assign({}, data), {merge: true} ).then( () => {
           console.log('Datos Actualizados en base de datos');
         })
         .catch(e => {

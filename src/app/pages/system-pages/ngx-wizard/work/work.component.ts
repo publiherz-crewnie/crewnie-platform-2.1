@@ -38,7 +38,7 @@ export class WorkComponent implements OnInit {
 
     //Cancel button event Starts
     cancel() {
-        this.router.navigate(['wizard'], { relativeTo: this.route.parent, skipLocationChange: true });
+        this.router.navigate(['/register-wizard/address'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     //Cancel button event Ends
 }

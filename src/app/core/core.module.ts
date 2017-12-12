@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 // Crewnie Auth Feature
 import { AuthService } from './auth/auth.service';
 import { AccountHealthGuard } from './auth/account-health-guard.service';
-// import { AuthGuard } from './auth/auth-guard.service';
+import { IsNoLoginGuard } from './auth/is-no-login-guard.service';
 
 // Firebase dependencies
 import { AngularFireModule } from 'angularfire2';
@@ -25,7 +25,8 @@ import { environment } from '../../environments/environment';
     ],
     providers: [
         AuthService,
-        AccountHealthGuard
+        AccountHealthGuard,
+        IsNoLoginGuard
     ],
 })
 export class CoreModule { }

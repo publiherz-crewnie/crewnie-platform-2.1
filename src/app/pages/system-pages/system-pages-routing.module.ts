@@ -8,6 +8,8 @@ import { LockScreenPageComponent } from './lock-screen/lock-screen-page.componen
 import { MaintenancePageComponent } from "./maintenance/maintenance-page.component";
 import { ErrorPageComponent } from './error/error-page.component';
 
+import { IsNoLoginGuard } from '../../core/auth/is-no-login-guard.service';
+
 
 const routes: Routes = [
   {
@@ -16,20 +18,20 @@ const routes: Routes = [
       // Access pages to Crewnie
       {
       path: '',
-      // canActivateChild: [IsNoLoginGuard],
+      canActivateChild: [IsNoLoginGuard],
       children: [
-        {
-          path: 'login',
-          component: LoginPageComponent,
-          data: {
-            title: 'Login Page'
-          }
-        },
         {
           path: 'register',
           component: RegisterPageComponent,
           data: {
             title: 'Register Page'
+          }
+        },
+        {
+          path: 'login',
+          component: LoginPageComponent,
+          data: {
+            title: 'Login Page'
           }
         },
         {

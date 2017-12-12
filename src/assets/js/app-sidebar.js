@@ -1,10 +1,10 @@
 /*!
  =========================================================
- * Crewnie Platform - V2.1
+ * Crewnie Angular 5 Platform
  =========================================================
 
  * Product Page: https://www.crewnie.com/
- * Copyright 2017 Publiherz Creative Studio (http://publiherz.com/)
+ * Copyright 2017 Publiherz Creative Studio (https://www.publiherz.com)
 
  =========================================================
 */
@@ -23,7 +23,9 @@
         $sidebar_img_container.css('background-image','url("' + $sidebar_img + '")');
     }
 
-    $sidebar_content.find('li.active').parents('li').addClass('open');
+    if(!$wrapper.hasClass('nav-collapsed')){
+        $sidebar_content.find('li.active').parents('li').addClass('open');
+    }
 
 
     $sidebar_content.on('click', '.navigation li a',function(){
@@ -47,7 +49,6 @@
                 openListItems = listItem.siblings('.open');
                 collapse(openListItems);
                 listItem.siblings('.open').find('li.open').removeClass('open');
-                // openListItems.removeClass('open');
             }
         }
     });
@@ -65,8 +66,6 @@
             if (callback) {
                 callback();
             }
-
-            // $.app.nav.container.trigger('collapsed.app.menu');
         });
 
     }
@@ -83,8 +82,6 @@
             if (callback) {
                 callback();
             }
-
-            // $.app.nav.container.trigger('expanded.app.menu');
         });
 
         
@@ -174,22 +171,40 @@
 
     if ($(window).width() < 992) {
         $sidebar.addClass('hide-sidebar');
+        $wrapper.removeClass('nav-collapsed menu-collapsed');
     }
     $( window ).resize(function() {
         if ($(window).width() < 992) {
             $sidebar.addClass('hide-sidebar');
+            $wrapper.removeClass('nav-collapsed menu-collapsed');
         }
         if ($(window).width() > 992) {
             $sidebar.removeClass('hide-sidebar');
+            if( $('.toggle-icon').attr('data-toggle') === 'collapsed' &&  $wrapper.not('.nav-collapsed menu-collapsed')){
+                $wrapper.addClass('nav-collapsed menu-collapsed');
+            }
         }
     });
+
+    $(document).on('click', '.navigation li:not(.has-sub)', function(){
+        if( $(window).width() < 992 ){
+            $sidebar.addClass('hide-sidebar');
+        }
+    });
+
+    $(document).on('click', '.logo-text', function(){
+        if( $(window).width() < 992 ){
+            $sidebar.addClass('hide-sidebar');
+        }
+    });
+
 
     $('.navbar-toggle').on('click',function(e){
         e.stopPropagation();
         $sidebar.toggleClass('hide-sidebar');
     });
 
-    $('html').click(function (e) {
+    $('html').on('click', function (e) {
         if ($(window).width() < 992) {
             if (!$sidebar.hasClass('hide-sidebar') && $sidebar.has(e.target).length === 0) {
                 $sidebar.addClass('hide-sidebar');
@@ -197,4 +212,9 @@
         }
     });
 
+    $('#sidebarClose').on('click', function(){
+        $sidebar.addClass('hide-sidebar');
+    });
+
+    $('.noti-list').perfectScrollbar();
 });

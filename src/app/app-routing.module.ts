@@ -16,6 +16,11 @@ const appRoutes: Routes = [
     redirectTo: 'make-movies',
     pathMatch: 'full',
   },
+  {
+    path: 'me',
+    redirectTo: '/crewnies',
+    pathMatch: 'full',
+  },
   { path: '', component: SystemLayoutComponent, data: { title: 'HomeLandingPage Views' }, children: HOME_LANDING_PAGE_ROUTES },
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: FULL_ROUTES},
   { path: '', component: SystemLayoutComponent, data: { title: 'system Views' }, children: SYSTEM_ROUTES },

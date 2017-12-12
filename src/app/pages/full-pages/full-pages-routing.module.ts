@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FullLayoutPageComponent } from 'app/pages/full-pages/full-layout-page.component';
+import { CrewnieProfilePageComponent } from 'app/pages/full-pages/crewnies/crewnie-profile-page.component';
+import { AccountHealthGuard } from '../../core/auth/account-health-guard.service';
 
 const routes: Routes = [
   {
-    path: '',
-     component: FullLayoutPageComponent,
+    path: 'crewnies',
+    canLoad: [AccountHealthGuard],
+    component: CrewnieProfilePageComponent,
     data: {
-      title: 'Full Layout Page'
+      title: 'Crewnie Profile Page'
     },    
   }
 ];
