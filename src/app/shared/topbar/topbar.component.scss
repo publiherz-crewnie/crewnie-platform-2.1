@@ -1,0 +1,48 @@
+.navbar{
+    padding: 0;
+    font-family: 'Lato';
+    background: black;
+    color: white;
+}
+.navbar a{
+    color: white;
+}
+.nav-link {
+    padding: 0;
+}
+.navbar li {
+    text-transform: uppercase;
+}
+@media screen and (max-width: 992px) {
+    .navbar li {
+        width: 100% !important;
+    }
+}
+.navbar-nav{
+    margin: 0;
+}
+.nav-item{
+    border-bottom: .1rem;
+    display: block;
+    padding: 0.2rem 2.4rem 0rem;
+
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.nav-item:hover{
+    background: white;
+    color: black;
+    border-bottom: .3rem solid #FC4000;
+    cursor: pointer;
+}
+.nav-item:hover a{
+    color: black;
+}
+.nav-item.active{
+    border-bottom: .3rem solid #FC4000;
+}
+.navbar-toggler{
+    color: white !important;
+}

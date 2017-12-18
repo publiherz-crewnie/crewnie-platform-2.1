@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Rokkitt');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,900');
 
 // Theme Colors
 $theme-colors: (
@@ -27,9 +28,10 @@ $spacers: (
 
 // Body
 $body-bg:       #f5f7fa;
+$red-cl:        #FC4000;
 
 // Fonts
-$font-family-sans-serif: 'Rokkitt', "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-sans-serif: 'Lato', 'Rokkitt', "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 $font-family-content: "Rubik", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
 $font-size-root: 16px;

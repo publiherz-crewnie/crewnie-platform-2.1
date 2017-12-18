@@ -5,13 +5,16 @@ import { FullPagesRoutingModule } from "./full-pages-routing.module";
 
 import { FullLayoutPageComponent } from './full-layout-page.component';
 
+import { CrewniesPage } from './crewnies/crewnies-page.component';
+
 @NgModule({
     imports: [
         CommonModule,
         FullPagesRoutingModule   
     ],
     declarations: [       
-        FullLayoutPageComponent
+        FullLayoutPageComponent,
+        CrewniesPage
     ]
 })
 export class FullPagesModule { }

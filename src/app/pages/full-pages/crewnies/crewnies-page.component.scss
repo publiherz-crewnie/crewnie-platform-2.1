@@ -1,0 +1,264 @@
+//GENERAL VARS
+$orange-crew: #FC4000;
+$light-crew: #A3B6C5;
+$green-crew: #39b54a;
+//PARTICULAR VARS
+$social-icons-pink: #ff9e7d;
+$skills-pink: #ffa992;
+$darker-gray: #666666;
+
+//MY PROFILE
+.my-profile-div{
+    background: white;
+}
+.my-profile{
+    font-family: Lato;
+}
+.my-profile .img-wrapper{
+    width: 100%;
+    height: 11rem;
+    position: relative;
+}
+.img-profile-dynamic{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    position: relative;
+    background: linear-gradient(70deg, $green-crew 78%, rgb(163,182,197) 22%);
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50%;
+    width:124px;
+    height:124px;
+}
+.img-profile-dynamic:after {
+    position: absolute;
+    display: block;
+    top: 5px;
+    left: 5px;
+    width: 114px;
+    height: 114px;
+    content: '';
+    background-color: white;
+    background-image: url("https://i.imgur.com/m5z1oiP.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.my-profile .databox{
+    width: 100%;
+    text-align: center;
+}
+.my-profile h1{
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $orange-crew;
+    margin: 0;
+    line-height: 1.5rem;
+}
+.my-profile p{
+    font-size: 0.8rem;
+    letter-spacing: 0px;
+    line-height: 1rem;
+    color: #4c4c4c;
+    font-weight: 400;
+}
+.my-profile .menu-icons{
+    text-align: center;
+    font-size: 1.2rem;
+}
+.my-profile .menu-icons a{
+    color: black;
+}
+.my-profile .menu-icons a:hover{
+    color: lighten(black, 25%);
+}
+.my-profile hr{
+    width: 100%;
+    border-color: $light-crew;
+}
+.my-profile .menu-side .item{
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 0.5rem;
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.my-profile .menu-side .item a{
+    color: black;
+    display: block;
+}
+.my-profile .menu-side .item:hover a{
+    color: $orange-crew;
+}
+.my-profile .menu-side .item:hover{
+    border-right: .3rem solid $orange-crew;
+}
+.my-profile .menu-side .item.active{
+    border-right: .3rem solid $orange-crew;
+    color: $orange-crew;
+}
+.my-profile .menu-side .item.active a{
+    color: $orange-crew;
+}
+/* ------------------------------- */
+.my-profile-content{
+    //
+}
+.my-profile-content .header{
+    background: url('https://i.imgur.com/RO2pNqw.jpg') ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    height: 242px;
+}
+.my-profile-content .img-wrapper{
+    position: relative;
+}
+.my-profile-content .header .img-profile-dynamic{
+    background: white;
+    position: absolute;
+    top: 242px;
+}
+.my-profile-content .name-place{
+    text-align: center;
+    margin-top: 3rem;
+}
+@media screen and (max-width: 1110px) {
+    .my-profile-content .name-place{
+        margin-top: 1.5rem;
+    }
+    .my-profile-content .social-icons{
+        margin-top: 5rem;
+        text-align: center !important;
+    }
+}
+.my-profile-content .social-icons{
+    text-align: right;
+    width: 100%;
+    color: $social-icons-pink;
+    font-size: 1.5rem;
+    padding: 0.7rem;
+}
+.my-profile-content .social-icons a{
+    color: $social-icons-pink;
+    padding: 0.7rem;
+}
+.my-profile-content .social-icons a:hover{
+    color: darken($social-icons-pink, 15%);    
+}
+.my-profile-content h1{
+    color: $orange-crew;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.my-profile-content .basic-info span{
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: $orange-crew;
+}
+.my-profile-content p{
+    font-family: Lato;
+    font-weight: 500;
+    letter-spacing: 0px;
+}
+.my-profile-content .basic-info p{
+    line-height: 0.7rem;
+    font-weight: 400;
+}
+.my-profile-content hr{
+    width: 100%;
+    border-color: lightgray;
+}
+.my-profile-content .bio p{
+    color: $darker-gray;
+    letter-spacing: -0.5px;
+}
+.my-profile-content .certifications{
+    text-align: left;
+}
+.my-profile-content .certifications .item{
+    font-size: 0.72rem;
+    font-weight: 400;
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 400;
+    display: inline-block;
+    margin: 1rem 1.5rem 1rem 0;
+}
+.my-profile-content .certifications img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.my-profile-content .endorsements .row{
+    margin-top: 1.5rem;
+}
+.my-profile-content .endorsements .skill{
+    background: #ffa992;
+    display: inline-block;
+    font-size: 0.98rem;
+    font-weight: 400;
+    padding: 0.25rem 1.5rem;
+    border-radius: 25px;
+}
+.my-profile-content .endorsements .skill:hover{
+    background: darken(#ffa992, 10%);
+}
+.img-profile{    
+    border: 5px solid white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.img-profile.in-top{
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);  
+    top: 242px;
+}
+.endorsements-images{
+    //
+}
+.endorsements-images img{
+    width: 40px;
+    height:40px;
+}
+/*.endorsements-images img:nth-of-type(1){
+    //
+    left: 0px !important;
+} */
+.endorsements .description{
+    font-weight: 400;
+}
+.endorsements .description b{
+    font-weight: 500;
+}
+.endorsements .description a, .my-profile-content .view-more a{
+    color: $orange-crew;
+}
+.endorsements .description a:hover, .my-profile-content .view-more a:hover{
+    color: darken($orange-crew, 15%);
+}
+.my-profile-content .view-more{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 5rem 0;
+    font-size: 1.5rem;
+}
