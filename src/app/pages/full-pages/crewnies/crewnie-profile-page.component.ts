@@ -7,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CrewnieProfilePageComponent implements OnInit {
+    items = [0,0,0,0,0,0,0,0,0];
+    certifications = [0,0,0,0,0];
 
     //Variable Declaration
-    currentPage: string = "About"
+    currentPage: string = "About";
+
+    constructor(){
+    }
 
     ngOnInit() {
         // Horizontal Timeline js for user timeline
-        $.getScript('./assets/js/vertical-timeline.js');
+        //$.getScript('./assets/js/vertical-timeline.js');
+        $.getScript('https://platform.twitter.com/widgets.js');
     }
 
     showPage(page: string) {
