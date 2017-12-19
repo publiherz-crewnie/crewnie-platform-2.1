@@ -9,8 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 /* Feature Components */
 import { PersonalComponent } from './personal/personal.component';
-import { WorkComponent } from './work/work.component';
 import { AddressComponent } from './address/address.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ResultComponent } from './result/result.component';
 
 /* Shared Service */
@@ -27,9 +27,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         NgbModule.forRoot(),
         NGXWizardRoutingModule
     ],
-    providers: [{ provide: FormDataService, useClass: FormDataService },
-    { provide: WorkflowService, useClass: WorkflowService }],
-    declarations: [NGXFormWizardComponent, NavbarComponent, PersonalComponent, WorkComponent, AddressComponent, ResultComponent],
+    providers: [
+        { provide: FormDataService, useClass: FormDataService },
+        { provide: WorkflowService, useClass: WorkflowService }
+    ],
+    declarations: [
+        NGXFormWizardComponent, NavbarComponent, PersonalComponent, AddressComponent, ProfileComponent, ResultComponent
+    ],
     bootstrap: [NGXFormWizardComponent]
 
 })

@@ -6,15 +6,19 @@ import { STEPS } from "../workflow/workflow.model";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-    selector: 'mt-wizard-work',
-    templateUrl: './work.component.html',
-    styleUrls: ['./work.component.scss']
+    selector: 'mt-wizard-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss']
 })
 
-export class WorkComponent implements OnInit {
-    title = 'What do you do?';
+export class ProfileComponent implements OnInit {
+    title = 'Connect with the right people!';
     workType: string;
     form: any;
+
+    isUsernameValid = false;
+    isProfilePhotoValid = false;  // AQUÍ VOY
+    isCoverImageValid = false;
 
     constructor(private router: Router,
         private route: ActivatedRoute, private formDataService: FormDataService,
@@ -22,16 +26,16 @@ export class WorkComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.workType = this.formDataService.getWork();
-
+        // this.workType = this.formDataService.getWork();
     }
+
     //Save button event Starts
     save(form: any) {
         if (!form.valid)
             return;
 
         this.formDataService.setWork(this.workType);
-        let firstState = this.workflowService.getFirstInvalidStep(STEPS.work);       
+        let firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);       
         this.router.navigate(['address'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     //Save button event Ends
@@ -41,4 +45,5 @@ export class WorkComponent implements OnInit {
         this.router.navigate(['/register-wizard/address'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     //Cancel button event Ends
+
 }

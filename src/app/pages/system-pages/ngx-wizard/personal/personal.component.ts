@@ -45,7 +45,7 @@ export class PersonalComponent implements OnInit {
 
       this.formDataService.setPersonal(this.personal);
 
-      const firstState = this.workflowService.getFirstInvalidStep(STEPS.work);
+      const firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);
       if (firstState.length > 0) {
       };
       this.router.navigateByUrl('/register-wizard/address', { relativeTo: this.route.parent, skipLocationChange: true });

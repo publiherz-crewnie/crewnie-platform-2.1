@@ -8,7 +8,9 @@ import { LockScreenPageComponent } from './lock-screen/lock-screen-page.componen
 import { MaintenancePageComponent } from "./maintenance/maintenance-page.component";
 import { ErrorPageComponent } from './error/error-page.component';
 
+// Guards
 import { IsNoLoginGuard } from '../../core/auth/is-no-login-guard.service';
+import { AccountHealthGuard } from '../../core/auth/account-health-guard.service';
 
 
 const routes: Routes = [
@@ -52,6 +54,7 @@ const routes: Routes = [
     },
     {
       path: 'register-wizard',
+      canLoad: [AccountHealthGuard],
       loadChildren: './ngx-wizard/ngx-wizard.module#NGXFormWizardModule',
     },
     {

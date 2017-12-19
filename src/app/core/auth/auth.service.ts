@@ -18,7 +18,13 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     public toastr: ToastsManager,
     private router: Router
-  ) { }
+  ) {
+      this.afAuth.auth.onAuthStateChanged( firebaseUser => {
+        if(!firebaseUser){
+          this.redirectToLogin();
+        }
+      } );
+   }
 
   getUserObservable(): Observable<firebase.User> {
     return this.afAuth.authState.map(user => {
@@ -29,7 +35,7 @@ export class AuthService {
   loginUserWithEmailAndPassword(email: string, password: string, persistence: any, url: string) {
     if (persistence) {
         this.afAuth.auth.setPersistence('local').catch(e => {
-            console.log('Error code: ' + e.code + ', error message: ' + e.message);
+          this.toastr.error(e.message, 'Something went wrong:');
         });
     }
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
@@ -48,13 +54,7 @@ export class AuthService {
       return this.afAuth.auth.signOut()
       .then(() => {
         this.token = null;
-        const navigationExtras = {
-          queryParams: {
-              'url': this.router.url,
-              queryParamsHandling: 'preserve'
-          }
-        };
-        this.router.navigate(['/login'], navigationExtras);
+        this.redirectToLogin();
       });
   }
 
@@ -72,4 +72,15 @@ export class AuthService {
       return Observable.of(!!user);
     });
   }
+
+  private redirectToLogin(){
+    const navigationExtras = {
+      queryParams: {
+          'url': this.router.url,
+          queryParamsHandling: 'preserve'
+      }
+    };
+    this.router.navigate(['/login'], navigationExtras);
+  }
+
 }

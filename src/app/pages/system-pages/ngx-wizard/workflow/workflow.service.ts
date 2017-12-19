@@ -6,7 +6,7 @@ export class WorkflowService {
     private workflow = [
         { step: STEPS.personal, valid: false },
         { step: STEPS.address, valid: false },
-        { step: STEPS.work, valid: false },
+        { step: STEPS.profile, valid: false },
         { step: STEPS.result, valid: false }
     ];
 
