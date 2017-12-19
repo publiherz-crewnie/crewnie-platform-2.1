@@ -40,8 +40,8 @@ export class AddressComponent implements OnInit {
 
         this.formDataService.setAddress(this.address);
         
-        const firstState = this.workflowService.getFirstInvalidStep(STEPS.work);
-        this.router.navigate(['/register-wizard/work'], { relativeTo: this.route.parent, skipLocationChange: true });
+        const firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);
+        this.router.navigate(['/register-wizard/profile'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     // Save button event Ends
 

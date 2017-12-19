@@ -7,9 +7,9 @@ import { STEPS } from '../workflow/workflow.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-// data base Service
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+// Data base Service
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AuthService } from '../../../../core/auth/auth.service';
 import * as firebase from 'firebase/app';
 
 @Injectable()
@@ -17,35 +17,32 @@ export class FormDataService {
 
     private formData = new FormData();
     private isPersonalFormValid = false;
-    private isWorkFormValid = false;
     private isAddressFormValid = false;
+    private isWorkFormValid = false;
 
     private colRef = this.afs.collection('crewnies');
     private docRef: AngularFirestoreDocument<FormData>;
 
     constructor(
       private workflowService: WorkflowService,
-      private afAuth: AngularFireAuth,
+      private acAuth: AuthService,
       public afs: AngularFirestore,
     ) {
         // Subscription to obtain the changes in real time
         this.getCrewnieObservable().subscribe( val => {
             if ( !!val ) this.formData = val 
         });
-
     }
 
     // Get a database Crewnie Observable
     getCrewnieObservable(): Observable<FormData> {
-
-        let userFirebase = this.afAuth.authState;
+        let userFirebase = this.acAuth.getUserObservable();
 
         return userFirebase.flatMap( crewnieUser => {
             this.docRef = this.colRef.doc( crewnieUser.uid );
             let crewnie = this.docRef.valueChanges();
             return crewnie;
         });
-
     }
 
     // Get Personal Observable
@@ -125,7 +122,7 @@ export class FormDataService {
         this.isWorkFormValid = true;
         this.formData.work = data;
         // Validate Work Step in Workflow
-        this.workflowService.validateStep(STEPS.work);
+        this.workflowService.validateStep(STEPS.profile);
     }
 
     getFormData(): FormData {
@@ -141,12 +138,13 @@ export class FormDataService {
     }
 
     saveInDatabase(data: any){
-        
-        this.docRef.set( Object.assign({}, data), {merge: true} ).then( () => {
-          console.log('Datos Actualizados en base de datos');
+        const preparedData = Object.assign({}, data);
+
+        this.docRef.set( preparedData, {merge: true} ).then( () => {
+          console.log('Data updated in database');
         })
         .catch(e => {
-          console.log(e.message);
+          this.acAuth.toastr.error(e.message, 'Something went wrong:');
         });
     }
 }

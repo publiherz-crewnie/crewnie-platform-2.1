@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { NGXFormWizardComponent } from './ngx-wizard.component';
 import { PersonalComponent } from './personal/personal.component';
-import { WorkComponent } from './work/work.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AddressComponent } from './address/address.component';
 import { ResultComponent } from './result/result.component';
 
@@ -30,10 +30,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'work',
-        component: WorkComponent,
+        path: 'profile',
+        component: ProfileComponent,
         data: {
-          title: 'Work'
+          title: 'Profile'
         }
       },
       {

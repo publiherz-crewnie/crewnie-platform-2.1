@@ -20,19 +20,22 @@ export class AccountHealthGuard implements CanLoad {
     ) { }
 
     canLoad( route: Route ): Observable<boolean> {
+        
+        console.log('Account health guard Called');
 
         return this.afAuth.authState.map(user => {
             if (!user) {
                 const navigationExtras = {
                     queryParams: {
                         'url': route.path,
-                        queryParamsHandling: 'preserve'
+                        queryParamsHandling: 'preserve',
+                        preserveFragment: true
                     }
                 };
                 this.router.navigate(['/login'], navigationExtras);
+
                 return false;
-            } else {
-            };
+            }
             if ( this.isEmailValidated( user.emailVerified ) ) {
                 return true;
             } else {
