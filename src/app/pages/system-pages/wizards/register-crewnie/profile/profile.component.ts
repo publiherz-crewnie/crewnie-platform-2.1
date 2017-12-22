@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
 
     //Cancel button event Starts
     cancel() {
-        this.router.navigate(['/register-wizard/address'], { relativeTo: this.route.parent, skipLocationChange: true });
+        this.router.navigate(['/wizards/register-crewnie/address'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     //Cancel button event Ends
 

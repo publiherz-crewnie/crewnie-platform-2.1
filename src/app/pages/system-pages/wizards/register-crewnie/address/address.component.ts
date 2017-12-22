@@ -41,13 +41,13 @@ export class AddressComponent implements OnInit {
         this.formDataService.setAddress(this.address);
         
         const firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);
-        this.router.navigate(['/register-wizard/profile'], { relativeTo: this.route.parent, skipLocationChange: true });
+        this.router.navigate(['/wizards/register-crewnie/profile'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     // Save button event Ends
 
     // Cancel button event Starts
     cancel() {
-        this.router.navigate(['/register-wizard/personal'], { skipLocationChange: true });
+        this.router.navigate(['/wizards/register-crewnie/personal'], { skipLocationChange: true });
     }
     // Cancel button event Ends
 }
