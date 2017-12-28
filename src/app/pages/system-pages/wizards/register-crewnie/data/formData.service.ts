@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 
 // Data base Service
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { AuthService } from '../../../../core/auth/auth.service';
+import { AuthService } from '../../../../../core/auth/auth.service';
 import * as firebase from 'firebase/app';
 
 @Injectable()

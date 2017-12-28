@@ -48,7 +48,7 @@ export class PersonalComponent implements OnInit {
       const firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);
       if (firstState.length > 0) {
       };
-      this.router.navigateByUrl('/register-wizard/address', { relativeTo: this.route.parent, skipLocationChange: true });
+      this.router.navigateByUrl('/wizards/register-crewnie/address', { relativeTo: this.route.parent, skipLocationChange: true });
   }
   // Save button event Ends
 }

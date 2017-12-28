@@ -43,7 +43,11 @@ const routes: Routes = [
             title: 'Forgot Password Page'
           }
         }
-    ]},
+    ]},{
+      path: 'wizards',
+      canLoad: [AccountHealthGuard],
+      loadChildren: './wizards/wizards.module#WizardsModule',
+    },
     // Crewnie exceptions
     {
       path: 'waiting-for',
@@ -53,18 +57,12 @@ const routes: Routes = [
       }
     },
     {
-      path: 'register-wizard',
-      canLoad: [AccountHealthGuard],
-      loadChildren: './ngx-wizard/ngx-wizard.module#NGXFormWizardModule',
-    },
-    {
       path: 'maintenance',
       component: MaintenancePageComponent,
       data: {
         title: 'Maintenance Page'
       }
     },
-
     {
       path: '**',
       component: ErrorPageComponent,
