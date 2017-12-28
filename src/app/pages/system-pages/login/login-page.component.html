@@ -1,57 +1,76 @@
-<!--Login Page Starts-->
 <section id="login">
-    <div class="container-fluid">
-        <div class="row full-height-vh">
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="card card-inverse gradient-indigo-purple text-center width-400">
-                    <div class="card-img overlap">
-                        <img alt="element 06" class="mb-1" src="assets/img/portrait/avatars/avatar-08.png" width="190">
+    <div class="container">
+        <div class="row">
+            <!-- *** LEFT * DIV *** -->
+            <div class="sign-up col-md-6 float-sm-right ">
+                <img src="assets/img/logos/logotype-white.png" alt="Crewnie">
+                <h1>You don't have <br>an account?</h1>
+                <p>
+                    Don't worry! You can login by clicking on 
+                    <br>the button below. To skip this next time, you can ask
+                    <br>us to remember your login credentials.
+                </p>
+                <div>
+                    <a routerLink="/register">Sign up</a>
+                </div>
+            </div>
+            <!-- *** RIGHT * DIV *** -->
+            <div class="login-box col-md-4 offset-md-1 ">
+                <div class="white-box">
+                    <div>
+                        <h2>Welcome back!</h2>
+                        <p>Let's create something epic!</p>
                     </div>
-                    <div class="card-body">
-                        <div class="card-block">
-                            <h2>Login</h2>
-                            <form (ngSubmit)="onSubmit()" #f="ngForm">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="email" class="form-control purple" name="inputEmail" id="inputEmail" placeholder="Email" #inputEmail="ngModel" ngModel required email>
-                                    </div>
-                                </div>
-                                <small class="form-text nmt-3 mb-3" [ngStyle]="{'color': '#FFBFC3'}"  *ngIf="!inputEmail.valid && (inputEmail.dirty || inputEmail.touched)"> Please enter a valid email! </small>
-  
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="password" class="form-control purple" name="inputPass" id="inputPass" placeholder="Password" ngModel required minlength="6">
-                                    </div>
-                                </div>
-  
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                                                <input type="checkbox" name="ckeckRemember" id="ckeckRemember" #ckeckRemember="ngModel" class="custom-control-input" ngModel checked>
-                                                <span class="custom-control-indicator ml-4"></span>
-                                                <span class="pl-2">Remember Me</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-  
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-pink btn-block btn-raised" [disabled]="!f.valid">Submit</button>
-                                        <a class="btn btn-secondary btn-block btn-raised" routerLink="/">Cancel</a>
-                                    </div>
-                                </div>
-                            </form>
+
+                    <form (ngSubmit)="onSubmit()" #f="ngForm">
+                        <div class="form-group">
+                            <p [ngClass]="{login_validate_text : !inputEmail.valid && (inputEmail.dirty || inputEmail.touched)}">Email</p>
+                            <input [ngClass]="{login_validate_input : !inputEmail.valid && (inputEmail.dirty || inputEmail.touched)}" type="email" name="inputEmail" id="inputEmail" #inputEmail="ngModel" ngModel required email>
+                            <small class="login-validate-text nmt-3 mb-3 " *ngIf="!inputEmail.valid && (inputEmail.dirty || inputEmail.touched)"> Please enter a valid email! </small>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="float-left"><a routerLink="/forgotpassword">Recover Password</a></div>
-                        <div class="float-right"><a routerLink="/register">New User?</a></div>
+                        
+                        <div class="form-group login-group-pass">
+                            <p>Password</p>
+                            <div class="login-pass-wrapper">
+                                <span class="fa fa-eye-slash login-eye"></span>
+                                <input type="password" class="login-password" name="inputPass" id="inputPass" ngModel required minlength="6">
+                            </div>
+                        </div>
+                        
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                            <input type="checkbox" name="ckeckRemember" id="ckeckRemember" #ckeckRemember="ngModel" class="custom-control-input" ngModel checked>
+                            <span class="custom-control-indicator ml-4"></span>
+                            <p>Remember me</p>
+                        </label>
+                        
+                        <div class="login-submit-wrapper">
+                            <button type="submit" class="login-submit" [disabled]="!f.valid">Log in</button>                            
+                        </div>
+
+                        <div class="login-troubles">
+                            <p>
+                                <u>
+                                    <a routerLink="/forgotpassword">Troubles with your user or password?</a>
+                                </u>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="login-credits">
+                    <div class="row">
+                        <div class="col-6 login-credits-copyright">
+                            © 2018 Publiherz S.C.
+                        </div>
+                        <div class="col-6 login-credits-terms">
+                            <a href="#">Terms</a>
+                            <a href="#" class="login-credits-terms-pl">Privacy</a>
+                            <a href="#" class="login-credits-terms-pl">
+                                <i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--Login Page Ends-->

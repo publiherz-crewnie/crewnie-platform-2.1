@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -21,12 +21,22 @@ export class RegisterPageComponent {
         private afAuth: AngularFireAuth
     ) {  }
 
+    ngOnInit() {
+        $('.login-eye').hover(function () {
+            $('.login-password').attr('type', 'text');
+            $('.login-eye').removeClass('fa-eye-slash').addClass('fa-eye');
+         }, function () {
+            $('.login-password').attr('type', 'password'); 
+            $('.login-eye').removeClass('fa-eye').addClass('fa-eye-slash');
+         });
+    }
+
     //  On submit click, the user registration process starts
     onSubmit() {
 
         const stageName: string = this.registerForm.value.sname;
-        const email: string = this.registerForm.value.inputEmail;
-        const password: string = this.registerForm.value.inputPass;
+        const email: string     = this.registerForm.value.inputEmail;
+        const password: string  = this.registerForm.value.inputPass;
 
 
         // We set the register persistent.

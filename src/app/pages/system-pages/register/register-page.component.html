@@ -1,68 +1,82 @@
-<!--Registration Page Starts-->
-<section id="regestration">
+<section id="login">
     <div class="container">
-        <div class="row full-height-vh">
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row d-flex">
-                            <div class="col-12 col-sm-12 col-md-6 gradient-deep-orange-orange">
-                                <div class="card-block">
-                                    <div class="card-img overlap">  
-                                        <img alt="Card image cap" src="assets/img/elements/13.png" width="350" class="mx-auto d-block">
-                                    </div>
-                                    <h2 class="card-title font-large-1 text-center white mt-3">Registration</h2>
-                                </div>
+        <div class="row">
+            <!-- *** LEFT * DIV *** -->
+            <div class="login-box col-md-4 offset-md-1">
+                    <div class="d-xs-block d-sm-block d-md-none">
+                        <img src="assets/img/logos/logotype-white.png" alt="Crewnie" class="img-logo top">
+                    </div>
+                    <div class="white-box">
+                        <div>
+                            <h2>Welcome to Crewnie!</h2>
+                            <p>Create your account by filling the form below.</p>
+                        </div>
+    
+                        <form (ngSubmit)="onSubmit()" #f="ngForm">
+                            
+                            <div class="form-group">
+                                <p [ngClass]="{login_validate_text : !sname.valid && (sname.dirty || sname.touched)}">Stage Name</p>
+                                <input [ngClass]="{login_validate_input : !sname.valid && (sname.dirty || sname.touched)}" type="text" name="sname" id="sname" #sname="ngModel" placeholder="" ngModel required minlength="3" >
+                                <small class="login-validate-text nmt-3 mb-3 " *ngIf="!sname.valid && (sname.dirty || sname.touched)"> Please enter a Stage Name! </small>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 d-flex align-items-center">
-                                <div class="card-block mx-auto">
-                                    <form  (ngSubmit)="onSubmit()" #f="ngForm">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-addon">
-                                                <i class="icon-user"></i>
-                                            </span>
-                                            <input type="text" class="form-control" name="sname" id="sname" #sname="ngModel" placeholder="Stage name" ngModel required minlength="3" >
-                                        </div>
-                                        <small class="form-text text-center danger nmt-3 mb-3" *ngIf="!sname.valid && (sname.dirty || sname.touched)"> Please enter a valid stage name! </small>
-                                       
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-addon">
-                                                <i class="ft-mail"></i>
-                                            </span>
-                                            <input type="email" class="form-control" name="inputEmail" id="inputEmail" #inputEmail="ngModel" placeholder="Email" ngModel required email >
-                                        </div>
-                                        <small class="form-text text-center danger nmt-3 mb-3" *ngIf="!inputEmail.valid && (inputEmail.dirty || inputEmail.touched)"> Please enter a valid email! </small>
 
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-addon">
-                                                <i class="ft-lock"></i>
-                                            </span>
-                                            <input type="password" class="form-control" name="inputPass" id="inputPass" #inputPass="ngModel" placeholder="Password" ngModel required minlength="6" >
-                                        </div>
-                                        <small class="form-text text-center danger nmt-3 mb-3" *ngIf="!inputPass.valid && (inputPass.dirty || inputPass.touched)"> Please enter a strong password! </small>
-
-                                        <div class="form-group col-sm-offset-1">
-                                            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                                                <input type="checkbox" class="custom-control-input" checked>
-                                                <span class="custom-control-indicator"></span>
-                                                <span class="pl-2" [ngStyle]="{'letter-spacing': '1px'}" >I agree <a>terms and conditions</a></span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-deep-orange btn-raised" [disabled]="!f.valid">Get Started</button>
-                                        </div>
-                                    </form>
-                                    <div class="card-footer">
-                                        <div class="float-left white"><a routerLink="/login">Login</a></div>
-                                        <div class="float-right white"><a routerLink="/forgotpassword">Recover Password</a></div>
-                                    </div>
+                            <div class="form-group">
+                                <p [ngClass]="{login_validate_text : !inputEmail.valid && (inputEmail.dirty || inputEmail.touched)}">Email</p>
+                                <input [ngClass]="{login_validate_input : !inputEmail.valid && (inputEmail.dirty || inputEmail.touched)}" type="email" name="inputEmail" id="inputEmail" #inputEmail="ngModel" ngModel required email >
+                                <small class="login-validate-text nmt-3 mb-3 " *ngIf="!inputEmail.valid && (inputEmail.dirty || inputEmail.touched)"> Please enter a valid email! </small>
+                            </div>                            
+                            
+                            <div class="form-group login-group-pass">
+                                <p [ngClass]="{login_validate_text : !inputPass.valid && (inputPass.dirty || inputPass.touched)}">Password</p>
+                                <div class="login-pass-wrapper">
+                                    <span class="fa fa-eye-slash login-eye"></span>
+                                    <input [ngClass]="{login_validate_input : !inputPass.valid && (inputPass.dirty || inputPass.touched)}" type="password" class="login-password" name="inputPass" id="inputPass" #inputPass="ngModel" ngModel required minlength="6" >
+                                    <small class="login-validate-text" *ngIf="!inputPass.valid && (inputPass.dirty || inputPass.touched)"> Please enter a strong password! </small>
                                 </div>
+
                             </div>
+
+                            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                                <input type="checkbox" class="custom-control-input">
+                                <span class="custom-control-indicator ml-4"></span>
+                                <p>I agree terms and conditions</p>
+                            </label>
+                            
+                            <div class="login-submit-wrapper">
+                                <button type="submit" class="login-submit" [disabled]="!f.valid">Sign up</button>                            
+                            </div>
+                        </form>
+                    </div>
+                    <div class="login-credits">
+                        <div class="row">
+                            <div class="col-6 login-credits-copyright">
+                                © 2018 Publiherz S.C.
+                            </div>
+                            <div class="col-6 login-credits-terms">
+                                <a href="#">Terms</a>
+                                <a href="#" class="login-credits-terms-pl">Privacy</a>
+                                <a href="#" class="login-credits-terms-pl">
+                                    <i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i>
+                                </a>
+                            </div>  
                         </div>
                     </div>
                 </div>
+
+            <!-- *** RIGHT * DIV *** -->
+            <div class="sign-up col-md-6 offset-md-1 float-sm-right">
+                <img src="assets/img/logos/logotype-white.png" alt="Crewnie" class="d-none d-md-block">
+                <h1>Do you already have <br>an account?</h1>
+                <p>
+                    That's awesome! You can login by clicking on
+                    <br>the button below. To skip this next time, you can ask
+                    <br>us to remember your login credentials.
+                </p>
+                <div>
+                    <a routerLink="/login">Login</a>
+                </div>
             </div>
+            
         </div>
     </div>
 </section>
-<!--Registration Page Ends-->

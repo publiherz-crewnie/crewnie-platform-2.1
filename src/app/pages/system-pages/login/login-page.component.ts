@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -17,6 +17,7 @@ export class LoginPageComponent {
 
     @ViewChild('f') loginForm: NgForm;
     redirectPath = 'me';
+    
 
     constructor(
         private router: Router,
@@ -41,5 +42,20 @@ export class LoginPageComponent {
         this.acAuth.loginUserWithEmailAndPassword(email, password, remember, this.redirectPath);
     }
 
+    ngOnInit() {
+
+        $('body').css('background', 'url(/assets/img/backgrounds/conceptual_photo.jpg) center center no-repeat');
+        $('body').css('background-size', 'cover');
+        $('body').css('background-color', 'black');
+        $('body').css('background-attachment', 'fixed');
+
+        $('.login-eye').hover(function () {
+            $('.login-password').attr('type', 'text');
+            $('.login-eye').removeClass('fa-eye-slash').addClass('fa-eye');
+         }, function () {
+            $('.login-password').attr('type', 'password'); 
+            $('.login-eye').removeClass('fa-eye').addClass('fa-eye-slash');
+         });
+    }
 
 }

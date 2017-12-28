@@ -1,0 +1,209 @@
+//GENERAL VARS
+@import './src/assets/sass/scss/_variables.scss';
+
+#login{
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+}
+a{
+    color: $orange-crew;
+}
+a:hover{
+    color: darken($orange-crew, 15%);
+}
+.sign-up{
+    text-align: left;
+    color: white;
+    padding: 10rem 10.6rem 1rem 2.6rem;
+}
+@media screen and (max-width: 1110px) {
+    .sign-up{
+        padding: 3rem 2rem;
+    }
+}
+.sign-up img{
+    height: 50px;
+}
+.sign-up h1{
+    margin-top: 2.5rem;
+    font-weight: 600;
+    font-family: Rokkitt;
+    font-size: 1.7rem;
+    letter-spacing: 0.1rem;
+    line-height: 2.2rem;
+}
+.sign-up p{
+    font-size: 0.8rem;
+}
+.sign-up a{
+    color: $orange-crew;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0.7rem 1.9rem;
+    border: 2px solid $orange-crew;
+}
+.sign-up a:hover{
+    background: $orange-crew;
+    color: white;
+}
+.sign-up>div{
+    margin-top: 1.6rem;
+}
+.white-box{
+    background: white;
+    margin-top: 10rem;
+    text-align: left;
+    padding: 2rem 2rem 1.2rem 2rem;
+}
+@media screen and (max-width: 1110px) {
+    .white-box{
+        margin-top: 2rem;
+    }
+}
+input{
+    font-family: Lato;
+}
+.login-box {
+    text-align: left;
+}
+.login-box h2{
+    color: $orange-crew;
+    font-size: 1.9rem;
+}
+.login-box>div p{
+    font-family: Lato;
+    font-size: 0.83rem;
+    letter-spacing: 0.3px;
+    font-weight: 450;
+}
+form p{
+    color: $orange-crew;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    line-height: 0.8;
+}
+input[type=text], input[type=email], input[type=password] {
+    border: 0;
+    border-bottom: 2px solid #D3D3D3;
+    width: 100%;
+    font-size: 0.8rem;
+
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+    border-bottom: 2px solid $orange-crew;
+}
+.login-group-pass{
+    margin-bottom: 22px;
+}
+.login-pass-wrapper {
+    position: relative;
+}
+.login-eye { 
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    font-size: 15px;
+    color: $light-crew;
+    cursor: pointer;
+}
+.login-validate-text, .login_validate_text{
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    color: $danger-crew !important;
+    font-family: Lato;
+}
+.login-validate-input, .login_validate_input{
+    border-bottom: 2px solid $danger-crew !important;
+}
+.custom-control-indicator{
+    background-size: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    top: -0.15rem;
+}
+.custom-checkbox .custom-control-indicator {
+    border-radius: 0.5rem;
+    left: -35px;
+}
+form label {
+    color: $orange-crew;
+}
+.custom-control-input:checked ~ .custom-control-indicator, .custom-control-input:active  ~ .custom-control-indicator {
+    color: #fff;
+    background-color: $orange-crew;
+}
+label p{
+    color: $light-crew;
+    text-transform: none;
+    font-size: 0.82rem !important;
+}
+label p:hover{
+    color: $orange-crew;
+    cursor: pointer;
+}
+.login-submit-wrapper{
+    display: flow-root;
+}
+.login-submit{
+    float: right;
+    background: $orange-crew;
+    font-size: 0.8rem;
+    color: white;
+    font-weight: 400;
+    padding: 0.4rem 2.2rem;
+    border: 2px solid $orange-crew;
+    font-family: Lato;
+}
+.login-submit:hover{
+    background: darken(white, 10%);
+    color: $orange-crew;
+    cursor: pointer;
+}
+.login-credits{
+    margin-left: 1rem;
+    font-size: 0.7rem;
+    display: flex;
+    color: white;
+    margin-top: 2rem;
+}
+.login-credits .row{
+    width: 100%;
+}
+.login-credits-copyright{
+    padding: 0;    
+}
+.login-credits-terms{
+    text-align: right;
+    width: 100%;
+    padding: 0;
+}
+.login-credits-terms-pl{
+    padding-left: 1rem;
+}
+.login-credits-terms i{
+    font-size: 0.28rem;
+    margin-left: 0.2rem;
+}
+.login-submit:disabled{
+    border: 2px solid $light-crew;
+    background: $light-crew !important;
+}
+.login-submit:disabled:hover{
+    color: white;
+    cursor: auto;
+}
+.login-troubles{
+    margin-top: 1rem;
+    text-align: right;
+}
+.login-troubles a {
+    font-size: 0.83rem;
+}

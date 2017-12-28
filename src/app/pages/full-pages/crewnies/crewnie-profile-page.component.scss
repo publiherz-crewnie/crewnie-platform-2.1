@@ -1,8 +1,5 @@
 //GENERAL VARS
-$orange-crew: #FC4000;
-$light-crew: #A3B6C5;
-$green-crew: #39b54a;
-$darker-gray: #666666;
+@import './src/assets/sass/scss/_variables.scss';
 
 //PARTICULAR VARS
 $social-icons-pink: #ff9e7d;
