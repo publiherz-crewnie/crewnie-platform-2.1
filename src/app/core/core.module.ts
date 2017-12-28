@@ -11,6 +11,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+// Google Maps Depencies
+import { AgmCoreModule } from '@agm/core';
+
 import { environment } from '../../environments/environment';
 
 @NgModule({
@@ -18,7 +21,8 @@ import { environment } from '../../environments/environment';
         CommonModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        AgmCoreModule.forRoot(environment.gMaps)
     ],
     declarations: [
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { NGXWizardRoutingModule } from './ngx-wizard-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /* App Root */
 import { NGXFormWizardComponent } from './ngx-wizard.component';
@@ -20,12 +20,16 @@ import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
     imports: [CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         NgbModule.forRoot(),
-        NGXWizardRoutingModule
+        NGXWizardRoutingModule,
+        AgmCoreModule
     ],
     providers: [
         { provide: FormDataService, useClass: FormDataService },

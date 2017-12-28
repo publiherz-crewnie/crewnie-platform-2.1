@@ -12,5 +12,10 @@ export const environment = {
     projectId: "crewnie-platform",
     storageBucket: "crewnie-platform.appspot.com",
     messagingSenderId: "685926084685"
-  }
+  },
+  gMaps: {
+    apiKey: 'AIzaSyAgJv5soj29rIkPVKoQYjML0bsiivcC880',
+    libraries: ["places"]
+  },
+
 };
