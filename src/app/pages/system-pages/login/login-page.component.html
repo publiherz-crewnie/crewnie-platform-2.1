@@ -1,9 +1,9 @@
-<section id="login">
+<section id="login" class="">
     <div class="container">
         <div class="row">
             <!-- *** LEFT * DIV *** -->
-            <div class="sign-up col-md-6 float-sm-right ">
-                <img src="assets/img/logos/logotype-white.png" alt="Crewnie">
+            <div class="sign-up ">
+                <img src="assets/img/logos/logotype-white.png" alt="Crewnie" class="img-logo visible-small">
                 <h1>You don't have <br>an account?</h1>
                 <p>
                     Don't worry! You can login by clicking on 
@@ -15,7 +15,10 @@
                 </div>
             </div>
             <!-- *** RIGHT * DIV *** -->
-            <div class="login-box col-md-4 offset-md-1 ">
+            <div class="login-box ">
+                <div class="">
+                    <img src="assets/img/logos/logotype-white.png" alt="Crewnie" class="img-logo top visible-large">
+                </div>
                 <div class="white-box">
                     <div>
                         <h2>Welcome back!</h2>
@@ -32,7 +35,7 @@
                         <div class="form-group login-group-pass">
                             <p>Password</p>
                             <div class="login-pass-wrapper">
-                                <span class="fa fa-eye-slash login-eye"></span>
+                                <span class="fa fa-eye-slash login-eye" ></span>
                                 <input type="password" class="login-password" name="inputPass" id="inputPass" ngModel required minlength="6">
                             </div>
                         </div>

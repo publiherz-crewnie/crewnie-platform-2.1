@@ -7,16 +7,10 @@
     color: white;
     padding: 10rem 1rem 1rem 9.6rem;
 }
-@media screen and (max-width: 1110px) {
+@media screen and (max-width: 992px) {
     .sign-up{
         padding: 3rem 2rem;
     }
-}
-.sign-up img, .img-logo{
-    height: 50px;
-}
-.img-logo.top{
-    margin: 2rem 0 0 0;
 }
 .pass-box-wrapper{
     position: relative;

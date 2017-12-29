@@ -22,13 +22,17 @@ export class RegisterPageComponent {
     ) {  }
 
     ngOnInit() {
+        $('body').css('background', 'black url(/assets/img/backgrounds/conceptual_photo.jpg) center center no-repeat');
+        $('body').css('background-size', 'cover');
+        $('body').css('background-attachment', 'fixed');
+
         $('.login-eye').hover(function () {
             $('.login-password').attr('type', 'text');
             $('.login-eye').removeClass('fa-eye-slash').addClass('fa-eye');
          }, function () {
-            $('.login-password').attr('type', 'password'); 
+            $('.login-password').attr('type', 'password');
             $('.login-eye').removeClass('fa-eye').addClass('fa-eye-slash');
-         });
+        });
     }
 
     //  On submit click, the user registration process starts
