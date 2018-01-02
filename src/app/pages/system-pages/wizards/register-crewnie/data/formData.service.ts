@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FormData, Personal, Address } from './formData.model';
+import { FormData, Personal, Address, crewnieAdress } from './formData.model';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
 
@@ -95,18 +95,25 @@ export class FormDataService {
     }
 
     // Set Address in the formData Class and database
-    setAddress(data: Address) {
+    setAddress(data: crewnieAdress) {
         // Update the Address data only when the Address Form had been validated successfully
         this.isAddressFormValid = true;
-        this.formData.street = data.street;
-        this.formData.city = data.city;
-        this.formData.state = data.state;
-        this.formData.zip = data.zip;
+
+        this.formData.gPlace = data.gPlace;
+        this.formData.gAdreess = data.gAdreess;
+
         // Validate Address Step in Workflow
         this.workflowService.validateStep(STEPS.address);
 
+        let crewnieDatabaseAdreess = {
+            adreess: {
+                gPlace: data.gPlace,
+                gAdreess: Object.setPrototypeOf(data.gAdreess, Object.prototype)
+            }
+        };
+
         // Update data in Database
-        this.saveInDatabase(data);
+        this.saveInDatabase(crewnieDatabaseAdreess);
 
     }
 
@@ -139,6 +146,9 @@ export class FormDataService {
 
     saveInDatabase(data: any){
         const preparedData = Object.assign({}, data);
+
+        console.log(data);
+        
 
         this.docRef.set( preparedData, {merge: true} ).then( () => {
           console.log('Data updated in database');

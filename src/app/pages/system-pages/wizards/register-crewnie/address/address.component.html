@@ -5,46 +5,24 @@
         <br/>
         <div class='row'>
             <div class='col-sm-12'>
+
                 <div class="form-group">
-                    <label class="form-control-label" for="street">Street Address</label>
-                    <input class="form-control input-md" #street="ngModel" required id="street" name="street" type="text" [(ngModel)]="address.street">
-                    <small class="form-text text-muted danger" *ngIf="!street.valid && (street.dirty || street.touched)">This field is required!</small>
-
-                </div>
-                <div class="row">
-                    <div class='col-12 col-sm-4'>
-                        <div class="form-group">
-                            <label class="form-control-label" for="city">City</label>
-                            <input class="form-control input-md" #city="ngModel" required id="city" name="city" type="text" [(ngModel)]="address.city">
-                            <small class="form-text text-muted danger" *ngIf="!city.valid && (city.dirty || city.touched)">This field is required!</small>
-
-                        </div>
-                    </div>
-                    <div class='col-6 col-sm-offset-1 col-sm-4'>
-                        <div class="form-group">
-                            <label class="form-control-label" for="state">State</label>
-                            <input class="form-control input-md" #state="ngModel" required id="state" name="state" type="text" [(ngModel)]="address.state">
-                            <small class="form-text text-muted danger" *ngIf="!state.valid && (state.dirty || state.touched)">This field is required!</small>
-
-                        </div>
-                    </div>
-                    <div class='col-offset-6 col-6 col-sm-offset-1 col-sm-4'>
-                        <div class="form-group">
-                            <label class="form-control-label" for="zip">Zip</label>
-                            <input class="form-control input-md" #zip="ngModel" required id="zip" name="zip" type="text" [(ngModel)]="address.zip">
-                            <small class="form-text text-muted danger" *ngIf="!zip.valid && (zip.dirty || zip.touched)">This field is required!</small>
-
-                        </div>
-                    </div>
+                    <input placeholder="Search your Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                        #search [formControl]="searchControl">
+                    <small class="form-text text-muted danger" *ngIf=" (!crewnieAdreess.gAdreess['locality']) && (searchControl.dirty || searchControl.touched)">Please specify an existing location!</small>
                 </div>
 
-                <div class="form-group text-center">
+                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+
+                <div class="form-group text-center mt-3">
                     <button uiSref="work" type="button" class="btn btn-raised btn-secondary" (click)="cancel()">
                         <span style="margin-right:10px;">
                             <i class="ft-chevron-left"></i>
                         </span> Previous</button>
-                    <button uiSref="result" type="button" class="btn btn-raised btn-info" [disabled]="!addressForm.valid" (click)="save(addressForm)">
-                    Next
+                    <button uiSref="result" type="button" class="btn btn-raised btn-info" [disabled]="!crewnieAdreess.gAdreess['locality']" (click)="save()">
+                        Next
                         <span style="margin-left:10px;">
                             <i class="ft-chevron-right"></i>
                         </span>
@@ -53,19 +31,7 @@
             </div>
         </div>
 
-        <div class="container">
-            <h1>Angular 2 + Google Maps Places Autocomplete</h1>
 
-            <div class="form-group">
-                <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-                    #search [formControl]="searchControl">
-            </div>
-
-            <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-            </agm-map>
-
-        </div>
 
     </div>
 </form>

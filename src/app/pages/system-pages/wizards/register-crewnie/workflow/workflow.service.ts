@@ -20,6 +20,13 @@ export class WorkflowService {
         }
     }
 
+    resetSteps() {
+        // Reset all the steps in the Workflow to be invalid
+        this.workflow.forEach(element => {
+            element.valid = false;
+        });
+    }
+
     getFirstInvalidStep(step: string): string {
         // If all the previous steps are validated, return blank
         // Otherwise, return the first invalid step

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 
-import { Address } from '../data/formData.model';
+import { Address, crewnieAdress } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
@@ -24,6 +24,8 @@ export class AddressComponent implements OnInit {
     title = 'Where do you unwrap?';
     address = new Address;
     form: any;
+
+    crewnieAdreess = new crewnieAdress;
 
     public latitude: number;
     public longitude: number;
@@ -71,6 +73,9 @@ export class AddressComponent implements OnInit {
 
                     //verify result
                     if (place.geometry === undefined || place.geometry === null) {
+
+                        this.crewnieAdreess.gAdreess['locality'] = null;
+
                         return;
                     }
 
@@ -88,14 +93,13 @@ export class AddressComponent implements OnInit {
     }
 
     // Save button event Starts
-    save(form: any) {
-        if (!form.valid) {
+    save() {
+        if (!this.crewnieAdreess.gAdreess['locality']) {
             return;
         }
 
-        this.formDataService.setAddress(this.address);
+        this.formDataService.setAddress(this.crewnieAdreess);
 
-        const firstState = this.workflowService.getFirstInvalidStep(STEPS.profile);
         this.router.navigate(['/wizards/register-crewnie/profile'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
     // Save button event Ends
@@ -123,23 +127,45 @@ export class AddressComponent implements OnInit {
         });
     }
 
+    private getPlacebyPosition(position: Position) {
+        var geocoder = new google.maps.Geocoder;
+        var latlng = {lat: position.coords.latitude, lng: position.coords.longitude };
+        geocoder.geocode({ 'location':  latlng}, (results, status) => {
+
+            if (status === 'OK' as any) {
+                if ( results[0] ) {
+                    console.log( results[0].formatted_address );
+                    this.searchControl.setValue( results[0].formatted_address );
+                    this.getAdreess(results[0]);
+                } else {
+                    console.log('No results found');
+                }
+            } else {
+                console.log('Geocoder failed due to: ' + status);
+            }
+
+        });
+    }
+
     private setCurrentPosition() {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.latitude = position.coords.latitude;
                 this.longitude = position.coords.longitude;
-                this.zoom = 12;
+                this.zoom = 16;
+                this.getPlacebyPosition(position);
             });
         }
     }
 
-    private getAdreess(place: google.maps.places.PlaceResult) {
+    private getAdreess(place: (google.maps.GeocoderResult | google.maps.places.PlaceResult)) {
 
         if (place.address_components) {
             let GoogleAddress = [];
 
             let gPlace = {
                 place_id: place.place_id,
+                formatted_address: place.formatted_address,
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng()
             };
@@ -149,16 +175,19 @@ export class AddressComponent implements OnInit {
                 var addressValue = place.address_components[i].long_name;
                 GoogleAddress[addressType] = addressValue;
             }
-            let crewnieAdress = {
+            this.crewnieAdreess = {
                 gPlace: gPlace,
                 gAdreess: GoogleAddress
             };
-            
-            if (!!GoogleAddress['locality']) {
-                console.log('Si tenemos localidad: '+ GoogleAddress['locality']);
+
+            if (!!this.crewnieAdreess.gAdreess['locality']) {
+                console.log('Si tenemos localidad: ' + GoogleAddress['locality']);
             } else {
                 console.log('No tenemos Localidad');
             }
+
+            console.log(this.crewnieAdreess);
+            
         }
     }
 

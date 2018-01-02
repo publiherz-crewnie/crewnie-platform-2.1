@@ -4,6 +4,8 @@ export class FormData {
     lastName = '';
     genre = '';
     birthdate = '';
+    gPlace = {};
+    gAdreess = [];
     street = '';
     city = '';
     state = '';
@@ -43,3 +45,15 @@ export class Address {
     }
 }
 // Address tab data class Ends
+
+// Crewnie Address tab data class starts
+export class crewnieAdress {
+    gPlace: Object;
+    gAdreess: Array<String>
+
+    constructor(){
+       this.gPlace = [];
+       this.gAdreess = [];
+    }
+}
+// Crewnieb Address tab data class Ends
