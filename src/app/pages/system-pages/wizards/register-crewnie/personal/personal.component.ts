@@ -16,9 +16,13 @@ import { Observable } from 'rxjs/Observable';
 
 export class PersonalComponent implements OnInit {
 
-  title = 'Please tell us about yourself.';
+  title = 'Personal information';
+  isButtonDisabled = false;
+
   personal = new Personal;
   form: any;
+
+  
 
   public crewnie: Observable<Personal>;
 
@@ -28,13 +32,26 @@ export class PersonalComponent implements OnInit {
     private workflowService: WorkflowService
   ) {    }
 
+  message:string;
+
+  newMessage(){
+    this.formDataService.changeMessage("disabled");
+  }
+
   ngOnInit() {
+
+    //Mensaje
+    this.formDataService.currentMessage.subscribe(message => this.message = message);
+    this.newMessage();
+    
 
     // I subscribe to the changes in real time of the Personal global class
     this.formDataService.getPersonal().subscribe( personal => {
        this.personal = personal;
     });
 
+    //feather.replace()
+    
   }
 
   // Save button event Starts
@@ -42,7 +59,7 @@ export class PersonalComponent implements OnInit {
       if (!form.valid) {
           return;
       }
-
+      
       this.formDataService.setPersonal(this.personal);
       this.router.navigateByUrl('/wizards/register-crewnie/address', { relativeTo: this.route.parent, skipLocationChange: true });
   }

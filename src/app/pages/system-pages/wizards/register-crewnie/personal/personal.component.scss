@@ -1,0 +1,42 @@
+//GENERAL VARS
+@import './src/assets/sass/scss/_variables.scss';
+
+.wizard-h1{
+    color: $orange-crew;
+    font-size: 1.8rem;
+    font-family: Lato;
+    font-weight: 300;
+}
+.wizard-input{
+    border: 0;
+    border-bottom: 1px solid #D3D3D3;
+    width: 100%;
+    font-family: Lato;
+    font-size: 1.4rem;
+    font-weight: 300;
+
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.wizard-input:focus {
+    border-bottom: 1px solid $orange-crew;
+}
+.form-control-label{
+    color: $orange-crew;
+    font-size: 0.74rem;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: 500;
+}
+.btn-secondary{
+    background: lighten($orange-crew, 10%);
+    cursor: pointer;
+}
+.btn-secondary:not([disabled]):not(.disabled):active, .btn-secondary:not([disabled]):not(.disabled).active, .show > .btn-secondary.dropdown-toggle{
+    background: $orange-crew;
+}
+.dnone{
+    display: none;
+}

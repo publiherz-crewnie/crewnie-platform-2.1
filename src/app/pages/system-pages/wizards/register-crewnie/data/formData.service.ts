@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AuthService } from '../../../../../core/auth/auth.service';
 import * as firebase from 'firebase/app';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class FormDataService {
@@ -32,6 +33,13 @@ export class FormDataService {
         this.getCrewnieObservable().subscribe( val => {
             if ( !!val ) this.formData = val 
         });
+    }
+
+    private messageSource = new BehaviorSubject<string>("default message");
+    currentMessage = this.messageSource.asObservable();
+    
+    changeMessage(message: string){
+        this.messageSource.next(message);
     }
 
     // Get a database Crewnie Observable

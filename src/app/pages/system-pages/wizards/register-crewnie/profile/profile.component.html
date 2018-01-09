@@ -4,12 +4,12 @@
     <div class="tab-pane active">
       <!-- Outline variants section start -->
       <section id="outline-variants">
-        <h4 class="head text-center">{{title}}</h4>
+        <h1 class="wizard-h1">{{title}}</h1>
 
         <div class="row justify-content-center" matchHeight="card">
 
           <div class="col-xl-6 col-lg-12">
-            <div class="card card-outline-info box-shadow-0 text-center">
+            <div class="card card-outline-info box-shadow-0 text-center card-txt">
               <div class="card-body">
                 <div class="card-block pt-3">
                   <div class="row d-flex">
@@ -17,9 +17,9 @@
                       <img src="assets/img/elements/07.png" alt="user profile" width="210" class="float-left mt-3">
                     </div>
                     <div class="col align-self-center">
-                      <h4 class="card-title mt-3">Username</h4>
+                      <h4 class="wizard-card-title mt-3">Username</h4>
                       <p class="card-text">Donut toffee candy brownie soufflé macaroon.</p>
-                      <button class="btn btn-raised btn-info btn-darken-3">Buy Now</button>
+                      <button class="btn btn-next">Buy Now</button>
                     </div>
                   </div>
                 </div>
@@ -28,7 +28,7 @@
           </div>
 
           <div class="col-xl-6 col-lg-12">
-            <div class="card card-outline-info box-shadow-0 text-center">
+            <div class="card card-outline-info box-shadow-0 text-center card-txt">
               <div class="card-body">
                 <div class="card-block pt-3">
                   <div class="row d-flex">
@@ -36,9 +36,9 @@
                       <img src="assets/img/elements/07.png" alt="element 04" width="210" class="float-left mt-3">
                     </div>
                     <div class="col align-self-center">
-                      <h4 class="card-title mt-3">Profile photo</h4>
+                      <h4 class="wizard-card-title mt-3">Profile photo</h4>
                       <p class="card-text">Donut toffee candy brownie soufflé macaroon.</p>
-                      <button class="btn btn-raised btn-info btn-darken-3">Buy Now</button>
+                      <button class="btn btn-next">Buy Now</button>
                     </div>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
           </div>
 
           <div class="col-xl-6 col-lg-12">
-            <div class="card card-outline-info box-shadow-0 text-center">
+            <div class="card card-outline-info box-shadow-0 text-center card-txt">
               <div class="card-body">
                 <div class="card-block pt-3">
                   <div class="row d-flex">
@@ -55,9 +55,9 @@
                       <img src="assets/img/elements/07.png" alt="element 04" width="210" class="float-left mt-3">
                     </div>
                     <div class="col align-self-center">
-                      <h4 class="card-title mt-3">Cover image</h4>
+                      <h4 class="wizard-card-title mt-3">Cover image</h4>
                       <p class="card-text">Donut toffee candy brownie soufflé macaroon.</p>
-                      <button class="btn btn-raised btn-info btn-darken-3">Buy Now</button>
+                      <button class="btn btn-next">Buy Now</button>
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
           <span style="margin-right:10px;">
             <i class="ft-chevron-left"></i>
           </span> Previous</button>
-        <button uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!workForm.valid" (click)="save(workForm)">
+        <button id="btnWizardNext" uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!workForm.valid" (click)="save(workForm)">
           Next
           <span style="margin-left:10px;">
             <i class="ft-chevron-right"></i>

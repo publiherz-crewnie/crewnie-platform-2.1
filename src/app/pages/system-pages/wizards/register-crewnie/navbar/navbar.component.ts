@@ -16,6 +16,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    feather.replace();
+
+    $("#btnBack").click(function(){
+        $('#btnWizardBack').trigger('click');
+    });
+
       this.router.events
           .filter(event => event instanceof NavigationEnd)
           .subscribe(event => {

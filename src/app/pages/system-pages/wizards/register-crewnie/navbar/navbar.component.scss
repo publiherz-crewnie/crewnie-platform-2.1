@@ -1,0 +1,81 @@
+//GENERAL VARS
+@import './src/assets/sass/scss/_variables.scss';
+
+.wizard-nav{
+    background: black;
+    color: white;
+    font-size: 1rem;
+    padding: 1.4rem;
+    font-family: Lato;
+    font-weight: 400;
+}
+.wizard-nav a{
+    color: white;
+}
+.wizard-nav .back{
+    background: black;
+    color: white;
+    font-size: 1.4rem;
+}
+.wizard-nav a:hover{
+    color: darken(white, 20%)
+}
+.wizard-nav .arrow-left{
+    position: relative;
+    top: 0.2rem;
+    margin-right: 1rem;
+}
+.wizard-nav .x{
+    transform: scale(1.7, 1.7);
+    stroke-width: .06rem;  
+    position: relative; 
+    top: 0.3rem;
+}
+.squares-wrapper{
+    position: relative;
+    display: inline-flex;
+    //top: 0.3rem;
+}
+.line{
+    width: 12rem;
+    position: absolute;
+    top: -0.57rem;
+    left: 1.5rem;
+    border: 0.5px solid $orange-crew;
+    z-index: 1;
+}
+.square{
+    height: 0.8rem;
+    width: 0.8rem;
+    border: 2px solid $orange-crew;
+    background: black;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+    z-index: 2;
+    color: $orange-crew;
+}
+.square.active{
+    background: $orange-crew;
+}
+.sqr-cap.active::after {
+    font-size: 0.7rem;
+    position: relative;
+    top: 0.6rem;
+    white-space: nowrap;
+}
+.s1.active::after{
+    content: "Personal";
+    left: -1.1rem;
+}
+.s2.active::after{
+    content: "Address";
+    left: -0.9rem;
+}
+.s3.active::after{
+    content: "Result";
+    left: -0.7rem;
+}
+.s4.active::after{
+    content: "Result";
+    left: -0.8rem;
+}

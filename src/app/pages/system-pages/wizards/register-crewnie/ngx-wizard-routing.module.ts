@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NGXFormWizardComponent } from './ngx-wizard.component';
@@ -51,6 +51,11 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class NGXWizardRoutingModule { }
+export class NGXWizardRoutingModule {
+  constructor(){
+      
+    
+  }
+}
 
 export const routedComponents = [NGXFormWizardComponent];

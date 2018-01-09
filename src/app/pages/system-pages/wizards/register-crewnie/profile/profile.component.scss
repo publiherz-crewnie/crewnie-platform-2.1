@@ -1,0 +1,26 @@
+@import './src/assets/sass/scss/_variables.scss';
+
+.btn-next{
+    background: $orange-crew;
+    color: white;
+    font-family: Lato;
+}
+
+.btn-next:hover{
+    background: darken($orange-crew, 15%);
+}
+.wizard-h1{
+    color: $orange-crew;
+    font-size: 1.8rem;
+    font-family: Lato;
+    font-weight: 300;
+}
+.card-txt{
+    font-family: Lato;
+}
+.wizard-card-title{
+    font-family: Lato;
+    text-transform: none;
+    color: $orange-crew;
+    font-weight: 400;
+}

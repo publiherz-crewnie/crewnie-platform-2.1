@@ -1,13 +1,13 @@
 <!-- Address Tab form Starts -->
 <form #addressForm="ngForm" class="editForm" novalidate>
     <div class="tab-pane active">
-        <p class="font-medium-2 text-center">{{title}}</p>
+        <h1 class="wizard-h1">{{title}}</h1>
         <br/>
         <div class='row'>
             <div class='col-sm-12'>
 
                 <div class="form-group">
-                    <input placeholder="Search your Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                    <input placeholder="Search your Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="wizard-input"
                         #search [formControl]="searchControl">
                     <small class="form-text text-muted danger" *ngIf=" (!crewnieAdreess.gAdreess['locality']) && (searchControl.dirty || searchControl.touched)">Please specify an existing location!</small>
                 </div>
@@ -17,11 +17,11 @@
                 </agm-map>
 
                 <div class="form-group text-center mt-3">
-                    <button uiSref="work" type="button" class="btn btn-raised btn-secondary" (click)="cancel()">
+                    <button id="btnWizardBack" uiSref="work" type="button" class="btn btn-raised btn-secondary" (click)="cancel()">
                         <span style="margin-right:10px;">
                             <i class="ft-chevron-left"></i>
                         </span> Previous</button>
-                    <button uiSref="result" type="button" class="btn btn-raised btn-info" [disabled]="!crewnieAdreess.gAdreess['locality']" (click)="save()">
+                    <button id="btnWizardNext" uiSref="result" type="button" class="btn btn-raised btn-info" [disabled]="!crewnieAdreess.gAdreess['locality']" (click)="save()">
                         Next
                         <span style="margin-left:10px;">
                             <i class="ft-chevron-right"></i>
@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-
 
 
     </div>
