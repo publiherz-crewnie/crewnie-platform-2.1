@@ -1,26 +1,95 @@
-<nav class="navbar navbar-expand-lg">   
-   <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed" 
-           [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"> 
-      <span class="fa fa-bars"></span>
-   </button> 
-  
-   <div class="navbar-collapse" [ngbCollapse]="!navbarCollapsed" id="navbarContent">
-     <ul class="navbar-nav mr-auto"> 
-        <li class="nav-item active"> 
-          <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">Getting Started</a> 
-        </li> 
-        <li class="nav-item">
-          <a class="nav-link" href="#">My Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Jobs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Rentals</a>
-        </li>
-     </ul> 
-   </div> 
+<div class="navbar navbar1 navbar-expand-lg">
+    <div>
+        <a class="navbar-brand">
+            <img src="assets/img/logos/logo-hor-black.png" class="img-logo-hor" alt="Crewnie Logo">
+            <img src="assets/img/logos/logo-sm-black.png" class="img-logo-sm" alt="Crewnie Logo">
+        </a>
+    </div>
+    <div class="div-search">
+        <div class="wrapper-search">
+            <a><i class="fa fa-search" aria-hidden="true"></i></a>
+            <input type="text" class="nav-search-input" placeholder="Search">
+        </div>
+    </div>    
+
+    <button class="navbar-toggler" type="button" (click)="navbarCollapsed2 = !navbarCollapsed2"
+      [attr.aria-expanded]="!navbarCollapsed2"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span>
+    </button>
+    
+
+    <div class="navbar-collapse" [ngbCollapse]="!navbarCollapsed2" id="navbarContent2">
+      <div class="container-fluid">
+        <div class="wrapper-icons">
+            <ul class="navbar-nav nav-icons">
+                <li><a><i class="ft-bell" aria-hidden="true"></i></a></li>
+                <li><a><i class="ft-calendar" aria-hidden="true"></i></a></li>
+                <li><a><i class="ft-mail" aria-hidden="true"></i></a></li>
+                <li class="nav-item" ngbDropdown placement="bottom-right">
+                    <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                        <a class="dropdown-item py-1" href="javascript:;">
+                            <i class="ft-settings mr-2"></i>
+                            <span>Settings</span>
+                        </a>
+                        <a class="dropdown-item py-1" href="javascript:;">
+                            <i class="ft-edit mr-2"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a class="dropdown-item py-1" href="javascript:;">
+                            <i class="ft-mail mr-2"></i>
+                            <span>My Inbox</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="onLogout()">
+                            <i class="ft-power mr-2"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar2 navbar-expand-lg">
+    <div class="nav-wrapper">
+        <div class="navbar2-item active">
+            <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">
+                <i class="ft-file-text"></i> 
+                <span class="hide-xs">Newsfeed</span>
+            </a>
+        </div>
+        <div class="navbar2-item nav-item3">
+            <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">
+                <i class="ft-user"></i> 
+                <span class="hide-xs">Profile</span>
+            </a>
+        </div>
+        <div class="navbar2-item">
+            <a class="nav-film" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">
+                <i class="ft-film"></i> 
+                <span class="hide-xs">Projects</span>
+            </a>
+        </div>
+        <div class="navbar2-item">
+            <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">
+                <i class="ft-video"></i> 
+                <span class="hide-xs">Jobs</span>
+            </a>
+        </div>
+        <div class="navbar2-item">
+            <a class="nav-link" [routerLink]="['/getting-started']" (click)="navbarCollapsed = true">
+                <i class="ft-package"></i> 
+                <span class="hide-xs">Rentals</span>
+            </a>
+        </div>
+    </div>
 </nav>
