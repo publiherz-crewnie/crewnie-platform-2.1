@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { FormData, Personal, Address, crewnieAdress } from './formData.model';
+import { FormData, Personal, Address, CrewnieAddress, CurrentForm } from './formData.model';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/Rx';
 
 // Data base Service
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AuthService } from '../../../../../core/auth/auth.service';
 import * as firebase from 'firebase/app';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class FormDataService {
@@ -21,34 +21,31 @@ export class FormDataService {
     private isAddressFormValid = false;
     private isWorkFormValid = false;
 
+    private personal = new Personal;
+
+    public formObservable: Subject<CurrentForm>;
+
     private colRef = this.afs.collection('crewnies');
     private docRef: AngularFirestoreDocument<FormData>;
 
     constructor(
-      private workflowService: WorkflowService,
-      private acAuth: AuthService,
-      public afs: AngularFirestore,
+        private workflowService: WorkflowService,
+        private acAuth: AuthService,
+        public afs: AngularFirestore,
     ) {
         // Subscription to obtain the changes in real time
-        this.getCrewnieObservable().subscribe( val => {
-            if ( !!val ) this.formData = val 
+        this.getCrewnieObservable().subscribe(val => {
+            if (!!val) { this.formData = val }
         });
-    }
-
-    private messageSource = new BehaviorSubject<string>("default message");
-    currentMessage = this.messageSource.asObservable();
-    
-    changeMessage(message: string){
-        this.messageSource.next(message);
     }
 
     // Get a database Crewnie Observable
     getCrewnieObservable(): Observable<FormData> {
-        let userFirebase = this.acAuth.getUserObservable();
+        const userFirebase = this.acAuth.getUserObservable();
 
-        return userFirebase.flatMap( crewnieUser => {
-            this.docRef = this.colRef.doc( crewnieUser.uid );
-            let crewnie = this.docRef.valueChanges();
+        return userFirebase.flatMap(crewnieUser => {
+            this.docRef = this.colRef.doc(crewnieUser.uid);
+            const crewnie = this.docRef.valueChanges();
             return crewnie;
         });
     }
@@ -57,16 +54,15 @@ export class FormDataService {
     getPersonal(): Observable<Personal> {
         return this.getCrewnieObservable().flatMap(
             formdata => {
-                let personal = new Personal;
-                if(!!formdata){
-                    personal = {
+                if (!!formdata) {
+                    this.personal = {
                         firstName: formdata.firstName,
                         lastName: formdata.lastName,
                         genre: formdata.genre,
                         birthdate: formdata.birthdate
                     }
                 }
-                return Observable.of(personal);
+                return Observable.of(this.personal);
             }
         );
     }
@@ -82,9 +78,6 @@ export class FormDataService {
 
         // Validate Personal Step in Workflow
         this.workflowService.validateStep(STEPS.personal);
-
-        // Update data in Database
-        this.saveInDatabase(data);
     }
 
     // Get Address Tab Data
@@ -96,14 +89,14 @@ export class FormDataService {
                     city: this.formData.city,
                     state: this.formData.state,
                     zip: this.formData.zip
-                }; 
+                };
                 return Observable.of(address);
             }
         );
     }
 
     // Set Address in the formData Class and database
-    setAddress(data: crewnieAdress) {
+    setAddress(data: CrewnieAddress) {
         // Update the Address data only when the Address Form had been validated successfully
         this.isAddressFormValid = true;
 
@@ -113,15 +106,12 @@ export class FormDataService {
         // Validate Address Step in Workflow
         this.workflowService.validateStep(STEPS.address);
 
-        let crewnieDatabaseAdreess = {
+        const crewnieDatabaseAdreess = {
             adreess: {
                 gPlace: data.gPlace,
                 gAdreess: Object.setPrototypeOf(data.gAdreess, Object.prototype)
             }
         };
-
-        // Update data in Database
-        this.saveInDatabase(crewnieDatabaseAdreess);
 
     }
 
@@ -152,17 +142,14 @@ export class FormDataService {
             this.isAddressFormValid;
     }
 
-    saveInDatabase(data: any){
-        const preparedData = Object.assign({}, data);
+    saveInDatabase() {
+        const preparedData = Object.assign({}, this.formData);
 
-        console.log(data);
-        
-
-        this.docRef.set( preparedData, {merge: true} ).then( () => {
-          console.log('Data updated in database');
+        this.docRef.set(preparedData, { merge: true }).then(() => {
+            console.log('Data updated in database');
         })
-        .catch(e => {
-          this.acAuth.toastr.error(e.message, 'Something went wrong:');
-        });
+            .catch(e => {
+                this.acAuth.toastr.error(e.message, 'Something went wrong:');
+            });
     }
 }

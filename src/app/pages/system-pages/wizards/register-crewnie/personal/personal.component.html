@@ -1,5 +1,5 @@
 <!-- Personal Tab Form Starts -->
-<form #personalForm="ngForm" class="editForm" novalidate>
+<form #personalForm="ngForm" class="editForm" novalidate (change)="onChange(personalForm)" (click)="onChange(personalForm)" (keyup)="onChange(personalForm)">
     <div class="tab-pane active">
         <h1 class="wizard-h1">{{title}}</h1>
         <br/>
@@ -9,43 +9,46 @@
                     <div class='col-12 col-sm-6'>
                         <div class="form-group">
                             <label class="form-control-label" for="firstname">First Name</label>
-                            <input class="wizard-input" #firstname="ngModel" id="firstname" name="firstname" type="text"  [(ngModel)]="personal.firstName" required minlength="3">
+                            <input class="wizard-input" #firstname="ngModel" id="firstname" name="firstname" type="text" [(ngModel)]="personal.firstName"
+                                required minlength="3">
                             <small class="form-text text-muted danger" *ngIf="!firstname.valid && (firstname.dirty || firstname.touched)">The first name is required!</small>
                         </div>
                     </div>
                     <div class='col-12 col-sm-6'>
                         <div class="form-group">
                             <label class="form-control-label" for="lastname">Last Name</label>
-                            <input class="wizard-input" #lastname="ngModel" id="lastname" name="lastname" type="text" [(ngModel)]="personal.lastName" required minlength="3">
+                            <input class="wizard-input" #lastname="ngModel" id="lastname" name="lastname" type="text" [(ngModel)]="personal.lastName"
+                                required minlength="3">
                             <small class="form-text text-muted danger" *ngIf="!lastname.valid && (lastname.dirty || lastname.touched)">The last name is required!</small>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-12 col-sm-6">
-                      <label class="form-control-label" for="genre" >Genre</label> <br>
-                      <div class="btn-group floating-btn" ngbRadioGroup #genre="ngModel" id="genre" name="genre" [(ngModel)]="personal.genre" required>
-                        <label ngbButtonLabel class="btn btn-secondary btn-fab">
-                            <input ngbButton type="radio" value="female"> <i class="fa fa-venus"></i>
-                        </label>
-                        <label ngbButtonLabel class="btn btn-secondary btn-fab">
-                            <input ngbButton type="radio" value="male"> <i class="fa fa-mars"></i>
-                        </label>
-                      </div>
-                      <small class="form-text text-muted danger" *ngIf="!genre.valid && (genre.dirty || genre.touched)">The genre is required!</small>
-                  </div>
-                  <div class='col-12 col-sm-6'>
-                      <div class="form-group">
-                          <label class="form-control-label" for="birthdate">Birthdate</label>
-                          <input class="wizard-input" #birthdate="ngModel" required id="birthdate" name="birthdate" type="date" [(ngModel)]="personal.birthdate">
-                          <small class="form-text text-muted danger" *ngIf="!birthdate.valid && (birthdate.dirty || birthdate.touched)">This field is required!</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="form-group text-center">
-                  <button id="btnWizardNext" type="button" uiSref="addres" class="btn btn-success btn-raised" [disabled]="!personalForm.valid" (click)="save(personalForm)"> Next <span style="margin-left:10px;"><i class="ft-chevron-right"></i></span></button>
-              </div>
+                    <div class="col-12 col-sm-6">
+                        <label class="form-control-label" for="genre">Genre</label>
+                        <br>
+                        <div class="btn-group floating-btn" ngbRadioGroup #genre="ngModel" id="genre" name="genre" [(ngModel)]="personal.genre" required>
+                            <label ngbButtonLabel class="btn btn-secondary btn-fab">
+                                <input ngbButton type="radio" value="female">
+                                <i class="fa fa-venus"></i>
+                            </label>
+                            <label ngbButtonLabel class="btn btn-secondary btn-fab">
+                                <input ngbButton type="radio" value="male">
+                                <i class="fa fa-mars"></i>
+                            </label>
+                        </div>
+                        <small class="form-text text-muted danger" *ngIf="!genre.valid && (genre.dirty || genre.touched)">The genre is required!</small>
+                    </div>
+                    <div class='col-12 col-sm-6'>
+                        <div class="form-group">
+                            <label class="form-control-label" for="birthdate">Birthdate</label>
+                            <input class="wizard-input" #birthdate="ngModel" id="birthdate" name="birthdate" type="date" [(ngModel)]="personal.birthdate" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" >
+                            <small class="form-text text-muted danger" *ngIf="!birthdate.valid && (birthdate.dirty || birthdate.touched)">This field is required!</small>
+                        </div>
+                    </div>
+                </div>
+            
 
             </div>
         </div>

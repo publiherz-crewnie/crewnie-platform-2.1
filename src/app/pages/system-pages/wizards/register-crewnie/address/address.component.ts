@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 
-import { Address, crewnieAdress } from '../data/formData.model';
+import { Address, CrewnieAddress, CurrentForm } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
@@ -25,14 +25,20 @@ export class AddressComponent implements OnInit {
     address = new Address;
     form: any;
 
-    crewnieAdreess = new crewnieAdress;
+    public currentPersonalForm: CurrentForm = {
+        isValid: false,
+        nextLink: '/wizards/register-crewnie/profile',
+        backLink: '/wizards/register-crewnie/personal',
+      };
+
+    crewnieAddress = new CrewnieAddress;
 
     public latitude: number;
     public longitude: number;
     public searchControl: FormControl;
     public zoom: number;
 
-    @ViewChild("search")
+    @ViewChild('search')
     public searchElementRef: ElementRef;
 
     constructor(private router: Router,
@@ -49,32 +55,34 @@ export class AddressComponent implements OnInit {
             this.address = address;
         });
 
-        //set google maps defaults
+        this.formDataService.formObservable.next(this.currentPersonalForm);
+
+        // set google maps defaults
         this.zoom = 6;
         this.latitude = 34.0937458;
         this.longitude = -118.3614976;
 
-        //create search FormControl
+        // create search FormControl
         this.searchControl = new FormControl();
 
-        //set current position
+        // set current position
         this.setCurrentPosition();
 
-        //load Places Autocomplete
+        // load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
 
-            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-                types: ["address"]
+            const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+                types: ['address']
             });
-            autocomplete.addListener("place_changed", () => {
+            autocomplete.addListener('place_changed', () => {
                 this.ngZone.run(() => {
-                    //get the place result
-                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+                    // get the place result
+                    const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-                    //verify result
+                    // verify result
                     if (place.geometry === undefined || place.geometry === null) {
 
-                        this.crewnieAdreess.gAdreess['locality'] = null;
+                        this.crewnieAddress.gAdreess['locality'] = null;
 
                         return;
                     }
@@ -82,7 +90,7 @@ export class AddressComponent implements OnInit {
 
                     this.getAdreess(place);
 
-                    //set latitude, longitude and zoom
+                    // set latitude, longitude and zoom
                     this.latitude = place.geometry.location.lat();
                     this.longitude = place.geometry.location.lng();
                     this.zoom = 18;
@@ -94,11 +102,11 @@ export class AddressComponent implements OnInit {
 
     // Save button event Starts
     save() {
-        if (!this.crewnieAdreess.gAdreess['locality']) {
+        if (!this.crewnieAddress.gAdreess['locality']) {
             return;
         }
 
-        this.formDataService.setAddress(this.crewnieAdreess);
+        this.formDataService.setAddress(this.crewnieAddress);
 
         this.router.navigate(['/wizards/register-crewnie/profile'], { relativeTo: this.route.parent, skipLocationChange: true });
     }
@@ -111,7 +119,7 @@ export class AddressComponent implements OnInit {
     // Cancel button event Ends
 
     private getPlacebyID(id: string) {
-        var geocoder = new google.maps.Geocoder;
+        const geocoder = new google.maps.Geocoder;
         geocoder.geocode({ 'placeId': id }, (results, status) => {
 
             if (status === 'OK' as any) {
@@ -128,8 +136,8 @@ export class AddressComponent implements OnInit {
     }
 
     private getPlacebyPosition(position: Position) {
-        var geocoder = new google.maps.Geocoder;
-        var latlng = {lat: position.coords.latitude, lng: position.coords.longitude };
+        const geocoder = new google.maps.Geocoder;
+        const latlng = {lat: position.coords.latitude, lng: position.coords.longitude };
         geocoder.geocode({ 'location':  latlng}, (results, status) => {
 
             if (status === 'OK' as any) {
@@ -148,7 +156,7 @@ export class AddressComponent implements OnInit {
     }
 
     private setCurrentPosition() {
-        if ("geolocation" in navigator) {
+        if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.latitude = position.coords.latitude;
                 this.longitude = position.coords.longitude;
@@ -161,33 +169,33 @@ export class AddressComponent implements OnInit {
     private getAdreess(place: (google.maps.GeocoderResult | google.maps.places.PlaceResult)) {
 
         if (place.address_components) {
-            let GoogleAddress = [];
+            const GoogleAddress = [];
 
-            let gPlace = {
+            const gPlace = {
                 place_id: place.place_id,
                 formatted_address: place.formatted_address,
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng()
             };
 
-            for (var i = 0; i < place.address_components.length; i++) {
-                var addressType = place.address_components[i].types[0];
-                var addressValue = place.address_components[i].long_name;
+            for (let i = 0; i < place.address_components.length; i++) {
+                const addressType = place.address_components[i].types[0];
+                const addressValue = place.address_components[i].long_name;
                 GoogleAddress[addressType] = addressValue;
             }
-            this.crewnieAdreess = {
+            this.crewnieAddress = {
                 gPlace: gPlace,
                 gAdreess: GoogleAddress
             };
 
-            if (!!this.crewnieAdreess.gAdreess['locality']) {
+            if (!!this.crewnieAddress.gAdreess['locality']) {
                 console.log('Si tenemos localidad: ' + GoogleAddress['locality']);
             } else {
                 console.log('No tenemos Localidad');
             }
 
-            console.log(this.crewnieAdreess);
-            
+            console.log(this.crewnieAddress);
+
         }
     }
 

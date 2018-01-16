@@ -21,7 +21,7 @@ export class Personal {
     genre: string;
     birthdate: string;
 
-    constructor(){
+    constructor() {
         this.firstName = '';
         this.lastName = '';
         this.genre = '';
@@ -37,7 +37,7 @@ export class Address {
     state: string;
     zip: string;
 
-    constructor(){
+    constructor() {
         this.street = '';
         this.city = '';
         this.state = '';
@@ -47,13 +47,27 @@ export class Address {
 // Address tab data class Ends
 
 // Crewnie Address tab data class starts
-export class crewnieAdress {
+export class CrewnieAddress {
     gPlace: Object;
     gAdreess: Array<String>
 
-    constructor(){
-       this.gPlace = [];
-       this.gAdreess = [];
+    constructor() {
+        this.gPlace = [];
+        this.gAdreess = [];
     }
 }
 // Crewnieb Address tab data class Ends
+
+// Current form Class
+export class CurrentForm {
+    isValid: boolean;
+    nextLink: string;
+    backLink: string;
+
+    constructor() {
+        this.isValid = false;
+        this.nextLink = '';
+        this.backLink = '';
+    }
+};
+ // Current form Class Ends

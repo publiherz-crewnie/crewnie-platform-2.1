@@ -3,18 +3,18 @@
 <!-- COMPONENT -->
 <div>
     <!-- WIZARD-NAV -->
-    <app-wizard-navbar></app-wizard-navbar>
+    <app-wizard-navbar [backPage]="currentForm.backLink"></app-wizard-navbar>
 
     <!-- CONTAINER -->
     <div class="col-md-8 offset-md-2">
         <div class="container wizard-box">
             <div class="row">
                 <div class="col-12">
-                    <div class="board">     
+                    <div class="board">
                         <!-- Content Area -!-->
                         <div class="tab-content">
                             <!-- Nested view  -!-->
-                            <router-outlet> </router-outlet>
+                            <router-outlet></router-outlet>
                         </div>
                         <!-- End Content Area -!-->
                     </div>
@@ -26,8 +26,10 @@
 <div class="next-nav">
     <div class="container-fluid">
         <div class="row">
-            <div class="next-btn text-right">
-                <a [ngClass]="(message==='disabled')?'disabled':''" id="btnNext">Next</a>
+            <div class="next-div text-right">
+                <button type="button" class="btn-next" [disabled]="!currentForm.isValid" (click)="goToNext()">
+                    Next
+                </button>
             </div>
         </div>
     </div>

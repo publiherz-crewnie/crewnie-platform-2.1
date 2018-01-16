@@ -56,19 +56,24 @@
   color: white;
   font-size: 1.4rem;
 }
-.next-nav .next-btn a{
+.btn-next{
   display: block;
   color: white;
   text-transform: uppercase;
   text-align: center;
   background: $orange-crew;
   padding: 0.75rem 3.4rem;
-  
+  border: none;  
 }
-.next-nav .next-btn a:hover{
+.btn-next:hover{
   background: darken($orange-crew, 10%);
 }
-.next-btn{
+.btn-next:disabled{
+  background: lighten($orange-crew, 20%);
+  color: lighten($orange-crew, 30%);
+  cursor: default;
+}
+.next-div{
   margin-left:auto; 
   margin-right:0; 
 }
